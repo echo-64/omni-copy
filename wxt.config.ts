@@ -10,7 +10,7 @@ export default defineConfig({
 
   manifest: ({ browser }) => ({
     name: 'Omni Copy',
-    version: '1.0.0',
+    version: '1.0.1',
     description:
       'The ultimate selection tool. Auto-copy on select or via a floating button, with full control over where — your clipboard, your rules',
 
