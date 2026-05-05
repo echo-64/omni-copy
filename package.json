@@ -2,7 +2,7 @@
   "name": "omni-copy",
   "description": "The ultimate text selection tool. Auto-copy on select or via a floating button, with full control over where copying is allowed — your clipboard, your rules.",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "wxt",
