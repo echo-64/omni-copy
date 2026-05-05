@@ -1,0 +1,121 @@
+@use '../abstracts' as *
+
+=clipboard-body
+  section#body
+    +p(5px)
+    flex: 1
+    display: flex
+    flex-direction: column
+
+    div.toggle-row
+      +mb(8px)
+      display: flex
+      align-items: center
+      justify-content: center
+      column-gap: 8px
+
+      div
+        flex: 1
+        p
+          font-size: 12px
+          text-transform: capitalize
+          &:nth-of-type(1)
+            font-weight: bold
+          &:nth-of-type(2)::after
+            content: ' inactive'
+      &:has(input[type="checkbox"]:checked) div p:nth-of-type(2)::after
+        content: ' active'
+
+    div.prefrences
+      position: relative
+      +pt(30px)
+      &.disabled
+        opacity: 0.5
+        pointer-events: none
+      &::before,
+      &::after
+        +position(absolute, 0, 5px, null, 5px)
+        height: 25px
+      &::before
+        content: ''
+        background-color: $accent
+        border-radius: 2px
+        box-shadow: 0px 3px 3px $secondary-2
+      &::after
+        content: 'Prefrences'
+        font-size: 14px
+        text-align: center
+        line-height: 25px
+        color: $neutral-white
+
+      label
+        cursor: pointer
+        display: block
+        position: relative
+        font-size: 13px
+        overflow-wrap: break-word
+        user-select: none
+        text-transform: capitalize
+        +ml($prefrence-margin-left)
+        &:not(div.sub-prefrence label)
+          +mt($prefrence-margin-top)
+        &::before
+          content: ''
+          +size(13px)
+          +position(absolute, 0px, null, null, -21px)
+          border: 2px solid $accent
+          border-radius: 3px
+        &::after
+          content: ''
+          +size(4px, 13px)
+          +position(absolute, -2px, null, null, -13px)
+          rotate: 45deg
+
+        &:has(input[type='checkbox']:checked)::after
+          border-width: 0 3px 3px 0
+          border-style: solid
+          border-color: $success
+
+        input[type="checkbox"]
+          pointer-events: none
+          visibility: hidden
+
+      div.sub-prefrence
+        +ml($prefrence-margin-left)
+        transition: $expand-transition
+        height: 0
+        visibility: hidden
+        pointer-events: none
+
+      span
+        position: relative
+        &::before,
+        &::after
+          +size(12px)
+          +position(absolute, 50%, null, null, -12px)
+          translate: 0 -50%
+          border-width: 1px
+          border-style: solid
+          border-radius: 50%
+        &::before
+          content: ''
+          background-color: $secondary-1
+          border-color: $neutral-dark
+        &::after
+          content: '?'
+          display: flex
+          align-items: center
+          justify-content: center
+          color: $neutral-dark
+          border-color: transparent
+
+    p.donation-link
+      +mt(10px)
+      font-size: 11px
+      font-weight: 600
+      text-align: center
+      color: $neutral-dark
+
+      a
+        font-weight: bold
+        color: $accent

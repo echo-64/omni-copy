@@ -1,0 +1,41 @@
+@use '../../../abstracts' as *
+
+label.simple-switcher
+  font-size: 17px
+  position: relative
+  display: inline-block
+  +size(3.5em, 2em)
+
+  &.xs
+    font-size: 0.8em // * added
+
+  input[type='checkbox']
+    opacity: 0
+    +size(0)
+
+    &:checked + span.slider
+      background-color: #007bff
+      border: 1px solid #007bff
+
+    &:checked + span.slider::before
+      transform: translateX(1.4em)
+      background-color: #fff
+
+    &:focus + span.slider
+      box-shadow: 0 0 1px #007bff
+
+  span.slider
+    cursor: pointer
+    +position(absolute, 0, 0, 0, 0)
+    background-color: #fff
+    border: 1px solid #adb5bd
+    transition: .4s
+    border-radius: 30px
+
+    &::before
+      content: ""
+      +position(absolute, false, false, 0.25em, 0.27em)
+      +size(1.4em)
+      border-radius: 20px
+      background-color: #adb5bd
+      transition: .4s

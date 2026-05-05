@@ -1,0 +1,27 @@
+/// Width & height
+///
+/// @param { string } $width
+///
+/// @param { string } $height
+///
+/// @group sizes
+///
+=size($width, $height: null)
+  @if $width and not $height
+    width: $width
+    height: $width
+  @else if $width and $height
+    width: $width
+    height: $height
+  @else
+    @error "Invalid parameters, expexts size($width) or size($width, $height)"
+
+/// Equal width and height, with rounded borders
+///
+/// @param {string} $size - adjust the width and height size
+///
+/// @group sizes
+///
+=rounded-size($size)
+  @include size($size)
+  border-radius: 50%

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OmniCopy</title>
+  </head>
+  <body>
+    <div class="clipboard">
+      <section id="header">
+        <p id="label">omni copy</p>
+      </section>
+
+      <section id="body">
+        <div class="toggle-row">
+          <label class="emoji-switcher">
+            <input type="checkbox" id="copyOnSelect" />
+          </label>
+          <div>
+            <p class="action">copy on select</p>
+            <p class="state">on-select:</p>
+          </div>
+        </div>
+
+        <div class="toggle-row">
+          <label class="emoji-switcher">
+            <input type="checkbox" id="copyButton" />
+          </label>
+          <div>
+            <p class="action">selection copy button</p>
+            <p class="state">button:</p>
+          </div>
+        </div>
+
+        <div class="prefrences">
+          <label for="prefrence-inputs">
+            enable in inputs
+            <input type="checkbox" id="prefrence-inputs" />
+            <span title="Allow copying text from input boxes"></span>
+          </label>
+          <div class="sub-prefrence">
+            <label for="prefrence-password">
+              password field
+              <input type="checkbox" id="prefrence-password" />
+              <span
+                title="Copy text from password input fields (be careful with sensitive data)"
+              ></span>
+            </label>
+          </div>
+
+          <label for="prefrence-textareas">
+            enable in textareas
+            <input type="checkbox" id="prefrence-textareas" />
+            <span title="Allow copying text from multi-line text areas"></span>
+          </label>
+
+          <label for="prefrence-contenteditable">
+            enable in contenteditable
+            <input type="checkbox" id="prefrence-contenteditable" />
+            <span
+              title="Allow copying text from rich text editors and editable content regions"
+            ></span>
+          </label>
+        </div>
+
+        <p class="donation-link">
+          Made with ❤️ — if you found this helpful, a small
+          <a
+            href="https://tinycod3r.blogspot.com/2026/05/fuel-my-passion.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            >donation
+          </a>
+          would mean a lot.
+        </p>
+      </section>
+    </div>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

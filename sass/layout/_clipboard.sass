@@ -1,0 +1,18 @@
+@use '../abstracts' as *
+
+@use 'header'
+@use 'body'
+
+div.clipboard
+  +size($clipboard-width, $clipboard-height)
+  +position(relative, 22px, false, false, 22px)
+  display: flex
+  flex-direction: column
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+  transition: $expand-transition
+  background-color: $neutral-white
+  box-shadow: 0 0 0 11px $secondary-1, 0 0 0 22px $primary
+
+  +header.clipboard-header
+
+  +body.clipboard-body

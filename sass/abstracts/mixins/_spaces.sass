@@ -1,0 +1,128 @@
+$important-declaration: null !default
+
+=pt($size)
+  padding-top: $size #{if(sass($important-declaration): "!important"; else: "")}
+  @if $size == auto
+    @warn "Invalid property value: padding-top: #{$size};"
+
+=pr($size)
+  padding-right: $size #{if(sass($important-declaration): "!important"; else: "")}
+  @if $size == auto
+    @warn "Invalid property value: padding-right: #{$size};"
+
+=pb($size)
+  padding-bottom: $size #{if(sass($important-declaration): "!important"; else: "")}
+  @if $size == auto
+    @warn "Invalid property value: padding-bottom: #{$size};"
+
+=pl($size)
+  padding-left: $size #{if(sass($important-declaration): "!important"; else: "")}
+  @if $size == auto
+    @warn "Invalid property value: padding-left: #{$size};"
+
+=px($r, $l: null)
+  @if $r and not $l
+    +pr($r)
+    +pl($r)
+
+  @else if $r and $l
+    +pr($r)
+    +pl($l)
+
+  @else
+    @error "px(#{$r}, #{$l}): invalid parameters. expects px($size) or px($r, $l)"
+
+=py($t, $b: null)
+  @if $t and not $b
+    +pt($t)
+    +pb($t)
+
+  @else if $t and $b
+    +pt($t)
+    +pb($b)
+
+  @else
+    @error "py(#{$t}, #{$b}): invalid parameters. expects py($size) or py($t, $b)"
+
+=p($t, $r: null, $b: null, $l: null)
+  @if $t and not $r and not $b and not $l
+    +px($t)
+    +py($t)
+
+  @else if $t and $r and not $b and not $l
+    +py($t)
+    +px($r)
+
+  @else if $t and $r and $b and not $l
+    +pt($t)
+    +px($r)
+    +pb($b)
+
+  @else if $t and $r and $b and $l
+    +pt($t)
+    +pr($r)
+    +pb($b)
+    +pl($l)
+
+  @else
+    @error "p(#{$t}, #{$r}, #{$b}, #{$l}): invalid parameters. expects p($size), p($y, $x), p($t, $x, $b), p($t, $r, $b, $l)"
+
+
+=mt($size)
+  margin-top: $size #{if(sass($important-declaration): "!important"; else: "")}
+
+=mr($size)
+  margin-right: $size #{if(sass($important-declaration): "!important"; else: "")}
+
+=mb($size)
+  margin-bottom: $size #{if(sass($important-declaration): "!important"; else: "")}
+
+=ml($size)
+  margin-left: $size #{if(sass($important-declaration): "!important"; else: "")}
+
+=mx($r, $l: null)
+  @if $r and not $l
+    +mr($r)
+    +ml($r)
+
+  @else if $r and $l
+    +mr($r)
+    +ml($l)
+
+  @else
+    @error "mx(#{$r}, #{$l}): invalid parameters. expects mx($size) or mx($r, $l)"
+
+=my($t, $b: null)
+  @if $t and not $b
+    +mt($t)
+    +mb($t)
+
+  @else if $t and $b
+    +mt($t)
+    +mb($b)
+
+  @else
+    @error "my(#{$t}, #{$b}): invalid parameters. expects my($size), my($t, $b)"
+
+=m($t, $r: null, $b: null, $l: null)
+  @if $t and not $r and not $b and not $l
+    +mx($t)
+    +my($t)
+
+  @else if $t and $r and not $b and not $l
+    +my($t)
+    +mx($r)
+
+  @else if $t and $r and $b and not $l
+    +mt($t)
+    +mx($r)
+    +mb($b)
+
+  @else if $t and $r and $b and $l
+    +mt($t)
+    +mr($r)
+    +mb($b)
+    +ml($l)
+
+  @else
+    @error "m(#{$t}, #{$r}, #{$b}, #{$l}): invalid parameters. expects m($size), m($y, $x), m($t, $x, $b), m($t, $r, $b, $l)"

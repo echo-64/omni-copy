@@ -1,0 +1,27 @@
+@use '../abstracts' as *
+
+html,
+body
+  +size($popup-width, $popup-height)
+  transition: $expand-transition
+
+*
+  @include p(0)
+  @include m(0)
+  box-sizing: border-box
+
+a
+  text-decoration: none
+  color: inherit
+
+ul, ol
+  list-style: none
+  li
+    list-style: none
+
+button
+  user-select: none
+  cursor: pointer
+  border: none
+  outline: none
+  background-color: transparent
