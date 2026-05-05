@@ -1,0 +1,95 @@
+@use '../../../abstracts' as *
+
+$switcher-width: 55px
+$switcher-height: 28px
+$switcher-off-background: #d6d6d6
+$switcher-state-off-background: $accent
+$switcher-on-background: $accent
+$switcher-state-on-background: $success
+
+label.emoji-switcher
+  position: relative
+  width: $switcher-width
+  height: $switcher-height
+  border-radius: 2px
+  background-color: $switcher-off-background
+  transition: background 0.2s ease-in
+  overflow: hidden
+
+  input[type='checkbox']
+    z-index: 1
+    cursor: pointer
+    +position(absolute, 0, 0, 0, 0)
+    opacity: 0
+    border-radius: inherit
+
+  &::before,
+  &::after
+    +size(calc( 50% - 4px ), calc( 100% - 4px ))
+    +position(absolute, 50%)
+    transform: translateY(-50%)
+    display: flex
+    align-items: center
+    justify-content: center
+    transition: all 0.3s ease
+    border-radius: inherit
+
+  &::before
+    content: "😴"
+    left: 2px
+    background-color: $switcher-state-off-background
+    font-size: 18px
+
+  &::after
+    content: "Off"
+    right: 2px
+    font-size: 11px
+    font-family: monospace
+    font-weight: bold
+    color: #111111
+
+  &:has(input[type='checkbox']:checked)
+    background-color: $switcher-on-background
+    animation: 0.8s rubber alternate
+    -webkit-animation: 0.8s rubber alternate
+    -moz-animation: 0.8s rubber alternate
+    -o-animation: 0.8s rubber alternate
+
+    &::before
+      content: "🙂"
+      left: calc( 50% + 2px )
+      background-color: $switcher-state-on-background
+
+    &::after
+      content: "On"
+      right: calc(50% + 2px)
+      color: #ffffff
+
+@keyframes rubber
+  0%
+    -webkit-transform: scale3d(1, 1, 1)
+    transform: scale3d(1, 1, 1)
+
+  30%
+    -webkit-transform: scale3d(1.15, 0.9, 1)
+    transform: scale3d(1.15, 0.9, 1)
+
+  40%
+    -webkit-transform: scale3d(0.8, 1.15, 1)
+    transform: scale3d(0.8, 1.15, 1)
+
+  50%
+    -webkit-transform: scale3d(1.15, 0.85, 1)
+    transform: scale3d(1.15, 0.85, 1)
+
+  65%
+    -webkit-transform: scale3d(0.95, 1.05, 1)
+    transform: scale3d(0.95, 1.05, 1)
+
+  75%
+    -webkit-transform: scale3d(1.05, 0.95, 1)
+    transform: scale3d(1.05, 0.95, 1)
+
+  100%
+    -webkit-transform: scale3d(1, 1, 1)
+    transform: scale3d(1, 1, 1)

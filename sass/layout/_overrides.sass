@@ -1,0 +1,14 @@
+@use '../abstracts' as *
+
+html
+  &.expand-sub-prefrence,
+  &.expand-sub-prefrence body
+    height: calc( $popup-height + $prefrence-full-height )
+  &.expand-sub-prefrence div.clipboard
+    height: calc( $clipboard-height + $prefrence-full-height )
+    section#body div.prefrences div.sub-prefrence
+      height: calc( $prefrence-full-height - $prefrence-margin-top )
+      visibility: visible
+      pointer-events: auto
+      label
+        +mt($prefrence-margin-top)

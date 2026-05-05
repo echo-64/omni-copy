@@ -1,0 +1,117 @@
+// From Uiverse.io by bandirevanth
+
+@use '../../../abstracts' as *
+
+$border-color: #eaeaea // * modified from #eee
+
+label.rocker-switcher
+  display: inline-block
+  position: relative
+  font-size: 2em
+  font-weight: bold
+  text-align: center
+  text-transform: uppercase
+  color: #888
+  width: 7em
+  height: 4em
+  overflow: hidden
+  border-bottom: 0.5em solid $border-color
+  border-radius: rem(3) // * added
+
+  &.sm
+    font-size: 0.75em
+
+  &.xs
+    font-size: 0.55em
+
+  &::before
+    content: ""
+    +position(absolute, 0.5em, 0, 0, 0)
+    background-color: #999
+    border: 0.5em solid $border-color
+    border-bottom: 0
+    border-radius: rem(3) // * added
+
+  input[type='checkbox']
+    opacity: 0
+    +size(0)
+
+  span.switch-left,
+  span.switch-right
+    cursor: pointer
+    position: absolute
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 2.5em
+    width: 3em
+    transition: 0.2s
+    user-select: none
+
+  span.switch-left::before,
+  span.switch-right::before
+    content: ""
+    +position(absolute, false, false, -0.45em)
+    +size(0.4em, 2.45em)
+    background-color: #ccc
+    transform: skewY(-65deg)
+
+  span.switch-left
+    +size(2.75em, 2.4em)
+    left: 0.85em
+    bottom: 0.4em
+    background-color: #ddd
+    transform: rotate(15deg) skewX(15deg)
+    &::before
+      left: -0.4em
+
+  span.switch-right
+    right: 0.5em
+    bottom: 0
+    background-color: #bd5757
+    color: #fff
+
+    &::before
+      right: -0.375em
+      background-color: transparent
+      transform: skewY(65deg)
+
+  input[type='checkbox']
+    &::before
+      background-color: transparent
+      width: 3.0833em
+
+    &:focus
+      & + span.switch-left
+        color: #333
+        & + span.switch-right
+          color: #fff
+
+    &:checked
+      &::before
+        background-color: #ccc
+
+      & + span.switch-left
+        background-color: #0084d0
+        color: rgb(255, 255, 255)
+        bottom: 0px
+        left: 0.5em
+        +size(3em, 2.5em)
+        transform: rotate(0deg) skewX(0deg)
+        
+        &::before
+          background-color: transparent
+
+        & + span.switch-right
+          background-color: #ddd
+          color: #888
+          bottom: 0.4em
+          right: 0.8em
+          +size(2.75em, 2.4em)
+          transform: rotate(-15deg) skewX(-15deg)
+
+      &:focus
+        & + span.switch-left
+          color: #fff
+          & + span.switch-right
+            color: #333
