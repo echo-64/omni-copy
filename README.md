@@ -3,7 +3,7 @@
 	<br />
 	The <b>Ultimate Text Selection Tool</b> — your clipboard, your rules.
 	<br />
-	<a href="https://addons.mozilla.org">Firefox Add-on</a>
+	<a href="https://addons.mozilla.org/en-US/firefox/addon/omni-copy/">Firefox Add-on</a>
 </div>
 
 ## Overview
@@ -27,7 +27,7 @@ Simple, configurable, and respectful of your workflow.
 
 ### Firefox:
 
-Get the latest available version from the [Mozilla Add-ons](https://addons.mozilla.org) (coming soon).
+Get the latest available version from the [Mozilla Add-ons](https://addons.mozilla.org/en-US/firefox/addon/omni-copy/).
 
 ### Chrome & Chromium based:
 
@@ -89,7 +89,7 @@ Contributions are welcome! Found a bug? Have an idea? Want to improve something?
 
 - **⭐ this repo** — It helps others discover omni-copy
 
-- **Report bugs && suggest features** — Just go to [this page](github.com/echo-64/omni-copy/issues) and click the "New issue" button.
+- **Report bugs && suggest features** — Just go to [this page](https://github.com/echo-64/omni-copy/issues) and click the "New issue" button.
 
 - **Code Contributions** — Fork the repo, make your changes, and send a pull request. We'll review it together.
 
