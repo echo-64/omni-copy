@@ -1,5 +1,6 @@
 import { getSelected, resetSelected, resetSelection } from './selection';
 import { type Response } from '../entrypoints/background';
+import { BACKGROUND } from '@/utils/constants';
 
 const body: HTMLBodyElement | null = document.querySelector('body');
 const log: (...data: any[]) => void = console.log.bind(console);
@@ -71,7 +72,7 @@ function createButton(state: 'copy' | 'copied' | 'error'): HTMLButtonElement {
 async function onClick(ev: MouseEvent, shadow: ShadowRoot) {
   if (ev.target === document.getElementById(hostId)) {
     const response: Response = await browser.runtime.sendMessage({
-      type: 'CLIPBOARD_WRITE',
+      type: BACKGROUND.MSG_TYPE,
       text: getSelected(),
     });
 
