@@ -1,37 +1,43 @@
+import { UI_SELECTORS } from '@/utils/constants';
+
 interface Ui {
+  clipboard: HTMLDivElement;
   copyOnSelect: HTMLInputElement;
   floatingButton: HTMLInputElement;
-  prefrencesDiv: HTMLDivElement;
-  prefrenceInputs: HTMLInputElement;
-  prefrencePassword: HTMLInputElement;
-  prefrenceTextareas: HTMLInputElement;
-  prefrenceContenteditable: HTMLInputElement;
+  preferenceInputs: HTMLInputElement;
+  preferencePassword: HTMLInputElement;
+  preferenceTextareas: HTMLInputElement;
+  preferenceContenteditable: HTMLInputElement;
 }
 
 /**
  * Object containing references to key UI elements for settings management.
  */
 export const ui: Ui = {
-  copyOnSelect: document.getElementById('copyOnSelect') as HTMLInputElement,
+  clipboard: document.querySelector(UI_SELECTORS.CLIPBOARD) as HTMLDivElement,
 
-  floatingButton: document.getElementById('copyButton') as HTMLInputElement,
-
-  prefrencesDiv: document.querySelector('div.prefrences') as HTMLDivElement,
-
-  prefrenceInputs: document.getElementById(
-    'prefrence-inputs',
+  copyOnSelect: document.getElementById(
+    UI_SELECTORS.COPY_ON_SELECT_ID,
   ) as HTMLInputElement,
 
-  prefrencePassword: document.getElementById(
-    'prefrence-password',
+  floatingButton: document.getElementById(
+    UI_SELECTORS.FLOATING_BTN_ID,
   ) as HTMLInputElement,
 
-  prefrenceTextareas: document.getElementById(
-    'prefrence-textareas',
+  preferenceInputs: document.getElementById(
+    UI_SELECTORS.PREFERENCE_INPUTS_ID,
   ) as HTMLInputElement,
 
-  prefrenceContenteditable: document.getElementById(
-    'prefrence-contenteditable',
+  preferencePassword: document.getElementById(
+    UI_SELECTORS.PREFERENCE_PASSWORD_ID,
+  ) as HTMLInputElement,
+
+  preferenceTextareas: document.getElementById(
+    UI_SELECTORS.PREFERENCE_TEXTAREAS_ID,
+  ) as HTMLInputElement,
+
+  preferenceContenteditable: document.getElementById(
+    UI_SELECTORS.PREFERENCE_CONTENTEDITABLE_ID,
   ) as HTMLInputElement,
 };
 
@@ -42,55 +48,49 @@ export const ui: Ui = {
  */
 export function renderUi(settings: Partial<Settings>): void {
   const {
+    clipboard,
     copyOnSelect,
     floatingButton,
-    prefrencesDiv,
-    prefrenceInputs,
-    prefrencePassword,
-    prefrenceTextareas,
-    prefrenceContenteditable,
+    preferenceInputs,
+    preferencePassword,
+    preferenceTextareas,
+    preferenceContenteditable,
   } = ui;
 
-  switch (settings.mode) {
-    case 'onSelect':
+  if (settings.mode != 'disabled') {
+    if (settings.mode == 'onSelect') {
       copyOnSelect.checked = true;
       floatingButton.checked = false;
-
-      if (prefrencesDiv.classList.contains('disabled')) {
-        prefrencesDiv.classList.remove('disabled');
-      }
-      break;
-    case 'floatingButton':
+    } else if (settings.mode == 'floatingButton') {
       copyOnSelect.checked = false;
       floatingButton.checked = true;
+    }
 
-      if (prefrencesDiv.classList.contains('disabled')) {
-        prefrencesDiv.classList.remove('disabled');
-      }
-      break;
-    case 'disabled':
-      copyOnSelect.checked = false;
-      floatingButton.checked = false;
-      prefrencesDiv.classList.add('disabled');
-      break;
-    default:
-      break;
+    if (clipboard.classList.contains(UI_SELECTORS.CLIPBOARD_DISABLED_CLASS)) {
+      clipboard.classList.remove(UI_SELECTORS.CLIPBOARD_DISABLED_CLASS);
+    }
+  } else if (settings.mode == 'disabled') {
+    copyOnSelect.checked = false;
+    floatingButton.checked = false;
+    clipboard.classList.add(UI_SELECTORS.CLIPBOARD_DISABLED_CLASS);
   }
 
   if (typeof settings.allowInInputs === 'boolean') {
     if (settings.allowInInputs) {
-      prefrenceInputs.checked = true;
+      preferenceInputs.checked = true;
 
-      document.querySelector('html')?.classList.add('expand-sub-prefrence');
+      document
+        .querySelector('html')
+        ?.classList.add(UI_SELECTORS.EXPAND_SUB_PREFERENCE_CLASS);
 
       typeof settings.allowInPasswords === 'boolean' &&
-        (prefrencePassword.checked = settings.allowInPasswords);
+        (preferencePassword.checked = settings.allowInPasswords);
     }
   }
 
   typeof settings.allowInTextareas === 'boolean' &&
-    (prefrenceTextareas.checked = settings.allowInTextareas);
+    (preferenceTextareas.checked = settings.allowInTextareas);
 
   typeof settings.allowInContenteditable === 'boolean' &&
-    (prefrenceContenteditable.checked = settings.allowInContenteditable);
+    (preferenceContenteditable.checked = settings.allowInContenteditable);
 }

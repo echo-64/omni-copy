@@ -51,13 +51,9 @@
           font-weight: bold
           color: $primary
 
-    div.prefrences
+    div.preferences
       position: relative
       +pt(30px)
-      &.disabled
-        opacity: 0.5
-        *
-          pointer-events: none
       &::before,
       &::after
         +position(absolute, 0, 5px, null, 5px)
@@ -82,9 +78,9 @@
         overflow-wrap: break-word
         user-select: none
         text-transform: capitalize
-        +ml($prefrence-margin-left)
-        &:not(div.sub-prefrence label)
-          +mt($prefrence-margin-top)
+        +ml($preference-margin-left)
+        &:not(div.sub-preference label)
+          +mt($preference-margin-top)
         &::before
           content: ''
           +size(13px)
@@ -106,8 +102,8 @@
           pointer-events: none
           visibility: hidden
 
-      div.sub-prefrence
-        +ml($prefrence-margin-left)
+      div.sub-preference
+        +ml($preference-margin-left)
         transition: $expand-transition
         height: 0
         visibility: hidden
