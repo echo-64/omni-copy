@@ -1,14 +1,22 @@
 @use '../abstracts' as *
 
 html
-  &.expand-sub-prefrence,
-  &.expand-sub-prefrence body
-    height: calc( $popup-height + $prefrence-full-height )
-  &.expand-sub-prefrence div.clipboard
-    height: calc( $clipboard-height + $prefrence-full-height )
-    section#body div.prefrences div.sub-prefrence
-      height: calc( $prefrence-full-height - $prefrence-margin-top )
+  &.expand-sub-preference,
+  &.expand-sub-preference body
+    height: calc( $popup-height + $preference-full-height )
+  &.expand-sub-preference div.clipboard
+    height: calc( $clipboard-height + $preference-full-height )
+    section#body div.preferences div.sub-preference
+      height: calc( $preference-full-height - $preference-margin-top )
       visibility: visible
       pointer-events: auto
       label
-        +mt($prefrence-margin-top)
+        +mt($preference-margin-top)
+
+  div.clipboard.disabled section#body
+    div.preferences,
+    div.collect-to-file-group
+      opacity: 0.5
+    div.preferences *,
+    div.collect-to-file-group *
+      pointer-events: none
