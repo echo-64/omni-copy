@@ -4,7 +4,7 @@ import { isTextField } from '@/utils/textField';
 import { isValidSelection } from '@/utils/validation';
 import { isInputElement, isOfType } from '@/utils/textField';
 import { type Response } from '@/entrypoints/background';
-import { hostId, renderButton } from './copyButton';
+import { hostId, renderButton, removeButtonHost } from './copyButton';
 
 let selected: string, selection: Selection | null, container: Element | null;
 
@@ -93,4 +93,13 @@ export function resetSelection(): void {
     const field = container as HTMLInputElement;
     field.selectionStart = field.selectionEnd;
   }
+}
+
+/**
+ * Reset selection state and remove the floating button from the page.
+ */
+export function clean() {
+  resetSelected();
+  resetSelection();
+  removeButtonHost();
 }
