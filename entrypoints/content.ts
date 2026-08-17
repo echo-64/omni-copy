@@ -1,6 +1,6 @@
 import { Settings } from '@/utils/defaults';
 import { patchSettings } from '@/utils/patchSettings';
-import { onSelect, onSelectEnd } from '@/lib/selection';
+import { onSelect, onSelectEnd, clean } from '@/lib/selection';
 
 export default defineContentScript({
   matches: ['*://*/*'],
@@ -28,6 +28,25 @@ export default defineContentScript({
     document.addEventListener('mouseup', async (ev: MouseEvent) => {
       if (settings.mode !== 'disabled') {
         await onSelectEnd(settings, ev);
+      }
+    });
+
+    document.addEventListener('keydown', (ev: KeyboardEvent) => {
+      if (settings.mode !== 'disabled') {
+        const key: string = ev.key.toLowerCase();
+        const isArrowKey: boolean =
+          key == 'arrowup' ||
+          key == 'arrowdown' ||
+          key == 'arrowright' ||
+          key == 'arrowleft';
+
+        if (ev.shiftKey) {
+          if (!isArrowKey && key != 'shift' && key != 'control') {
+            clean();
+          }
+        } else if (key != 'control') {
+          clean();
+        }
       }
     });
   },
