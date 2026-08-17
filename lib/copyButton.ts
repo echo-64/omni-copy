@@ -1,4 +1,4 @@
-import { getSelected, resetSelected, resetSelection } from './selection';
+import { getSelected, clean } from './selection';
 import { type Response } from '../entrypoints/background';
 import { BACKGROUND } from '@/utils/constants';
 
@@ -101,18 +101,9 @@ async function onClick(ev: MouseEvent, shadow: ShadowRoot) {
 }
 
 /**
- * Reset selection state and remove the floating button from the page.
- */
-function clean() {
-  resetSelected();
-  resetSelection();
-  removeButtonHost();
-}
-
-/**
  * Remove the button host element from the document body if it exists.
  */
-function removeButtonHost() {
+export function removeButtonHost() {
   const host: HTMLElement | null = document.getElementById(hostId);
   host && document.body.removeChild(host);
 }
