@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="./omni-copy.png" width="269" height="294">
+	<img src="./omni-copy.png" width="269" height="385">
 	<br />
 	The <b>Ultimate Text Selection Tool</b> — your clipboard, your rules.
 	<br />
