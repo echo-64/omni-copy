@@ -1,3 +1,4 @@
+import { collectText } from './editor';
 import { getSetting } from './settings';
 
 /**
@@ -25,6 +26,8 @@ export async function preformCopy(text: string): Promise<'copied'> {
   }
 
   if ((await getSetting('collectToFile')) === true) {
+    await collectText(text);
+  }
 
   return 'copied';
 }

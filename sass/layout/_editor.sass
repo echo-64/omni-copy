@@ -1,0 +1,66 @@
+@use 'sass:color'
+
+@use '../abstracts' as *
+@use '../base/normalize'
+
+=base-height
+  height: 100%
+  max-height: 100%
+
+=flex($align-items: null, $justify-content: null, $direction: null)
+  display: flex
+  align-items: $align-items
+  justify-content: $justify-content
+  flex-direction: $direction
+
+html
+  +base-height
+  body
+    +base-height
+    .omni-copy-collected-text
+      +base-height
+      +p(10px)
+      +flex(null, null, column)
+      row-gap: 10px
+      background-color: color.scale($neutral-dark, $alpha: -10%)
+
+      *:not(.text-editor, .text-editor *)
+        color: $neutral-white
+        font-size: 13px
+
+      header
+        +flex(center)
+        column-gap: 10px
+        button
+          +p(7px, 10px)
+          border-radius: 4px
+          font-weight: 600
+          &:not(#clear-editor)
+            background-color: $accent
+          &#clear-editor
+            +ml(auto)
+            border: 1px solid color.scale($neutral-light, $alpha: -50%)
+
+      .text-editor
+        flex: 1
+        border-radius: 5px
+        overflow: hidden
+
+      footer
+        +flex(center, flex-end)
+
+        .file-name-group
+          label
+            color: $neutral-white
+          input
+            +p(1px, 5px)
+            outline: none
+            border: 1px solid color.scale($neutral-light, $alpha: -35%)
+            border-radius: 2px
+            background-color: transparent
+            &::placeholder
+              color: $neutral-light
+            &:focus
+              border-color: $neutral-white
+              &::placeholder
+                color: $neutral-white

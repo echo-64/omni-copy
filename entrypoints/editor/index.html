@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Omni Copy — Collected Text</title>
+  </head>
+  <body>
+    <div class="omni-copy-collected-text">
+      <header>
+        <button id="load-file">Load file</button>
+        <button id="save-file">Save / Export</button>
+        <button id="clear-editor">Clear all</button>
+      </header>
+      <section class="text-editor"></section>
+      <footer>
+        <div class="file-name-group">
+          <label for="file-name">File Name:</label>
+          <input id="file-name" placeholder="" />
+        </div>
+      </footer>
+    </div>
+
+    <input type="file" style="display: none" id="file-loader" />
+    <script src="./main.ts" type="module"></script>
+  </body>
+</html>
