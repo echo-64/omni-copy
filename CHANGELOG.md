@@ -8,6 +8,10 @@ All notable changes to this project will be documented in this file.
 
 - **Collect to File** — optionally gather every copied selection into an editable buffer, with the option to load an existing file to continue appending to, and export everything as a single file when you're done.
 
+### Security
+
+- Fixed unsafe `innerHTML` usage to avoid XSS vulnerabilities
+
 ## [1.0.1] - 2026-05-05
 
 ### Fixed
