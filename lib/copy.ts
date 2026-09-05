@@ -11,21 +11,19 @@
  * rejected with an object containing combined error messages.
  */
 export async function preformCopy(text: string): Promise<'copied'> {
+  try {
     window.focus();
-
+    await navigator.clipboard.writeText(text);
+  } catch (modernCopyError: any) {
     try {
-      await navigator.clipboard.writeText(text);
-      res('copied');
-    } catch (modernCopyError: any) {
-      await preformLegacyCopy(text)
-        .then(res)
-        .catch(legacyCopyError => {
-          rej({
-            message: `${modernCopyError.message}\n${legacyCopyError.message}`,
-          });
-        });
+      await preformLegacyCopy(text);
+    } catch (legacyCopyError: any) {
+      throw new Error(`${modernCopyError.message}\n${legacyCopyError.message}`);
     }
-  });
+  }
+
+
+  return 'copied';
 }
 
 /**
@@ -40,18 +38,17 @@ export async function preformCopy(text: string): Promise<'copied'> {
  * @returns A promise that resolves with `'copied'` when the fallback copy succeeds.
  * @throws When the legacy copy approach fails, the promise is rejected with the thrown error.
  */
-export function preformLegacyCopy(text: string): Promise<'copied'> {
-  return new Promise((res, rej) => {
-    try {
-      const textarea: HTMLTextAreaElement = document.createElement('textarea');
-      textarea.value = text;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      res('copied');
-    } catch (error) {
-      rej(error);
-    }
-  });
+export async function preformLegacyCopy(text: string): Promise<'copied'> {
+  try {
+    const textarea: HTMLTextAreaElement = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+  } catch (err) {
+    throw err;
+  }
+
+  return 'copied';
 }
