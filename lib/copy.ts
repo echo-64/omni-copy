@@ -1,3 +1,5 @@
+import { getSetting } from './settings';
+
 /**
  * Writes text to the clipboard using the modern Clipboard API.
  *
@@ -22,6 +24,7 @@ export async function preformCopy(text: string): Promise<'copied'> {
     }
   }
 
+  if ((await getSetting('collectToFile')) === true) {
 
   return 'copied';
 }

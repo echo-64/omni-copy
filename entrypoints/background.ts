@@ -1,6 +1,9 @@
+import { defineBackground } from 'wxt/utils/define-background';
+import { browser } from 'wxt/browser';
 import { createOffscreen } from '@/lib/offscreen';
 import { preformCopy } from '@/lib/copy';
 import { BACKGROUND, OFFSCREEN } from '@/utils/constants';
+import { getSettings } from '@/lib/settings';
 
 export type Response = { result: 'copied' } | { result: 'error'; message: string };
 
@@ -40,9 +43,6 @@ export default defineBackground(() => {
   );
 
   browser.runtime.onInstalled.addListener(async () => {
-    const settings: Promise<{ [key in keyof Settings]: key }> =
-      browser.storage.local.get(defaults as any);
-
-    await browser.storage.local.set(await settings);
+    await browser.storage.local.set(await getSettings());
   });
 });

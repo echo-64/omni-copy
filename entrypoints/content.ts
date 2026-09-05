@@ -1,23 +1,13 @@
+import { defineContentScript } from 'wxt/utils/define-content-script';
 import { Settings } from '@/utils/defaults';
-import { patchSettings } from '@/utils/patchSettings';
 import { onSelect, onSelectEnd, clean } from '@/lib/selection';
+import { getSettings } from '@/lib/settings';
 
 export default defineContentScript({
   matches: ['*://*/*'],
 
   async main() {
-    let settings: Settings = await browser.storage.local.get();
-
-    browser.storage.local.onChanged.addListener(async (changes: any) => {
-      for (const option in changes) {
-        const { newValue, oldValue } = changes[option];
-
-        if (newValue !== oldValue) {
-          settings = patchSettings(settings, { [option]: newValue });
-          await browser.storage.local.set({ [option]: newValue });
-        }
-      }
-    });
+    let settings: Settings = await getSettings();
 
     document.addEventListener('selectionchange', () => {
       if (settings.mode !== 'disabled') {

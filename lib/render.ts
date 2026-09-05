@@ -1,4 +1,5 @@
 import { UI_SELECTORS } from '@/utils/constants';
+import { getSetting } from './settings';
 
 interface Ui {
   clipboard: HTMLDivElement;
@@ -74,6 +75,8 @@ export function renderUi(settings: Partial<Settings>): void {
     floatingButton.checked = false;
     clipboard.classList.add(UI_SELECTORS.CLIPBOARD_DISABLED_CLASS);
   }
+
+  collectedCounter.innerHTML = `${(await getSetting('collectedText')).text.length}`;
 
   if (typeof settings.allowInInputs === 'boolean') {
     if (settings.allowInInputs) {
