@@ -1,4 +1,5 @@
-import { preformModernCopy } from '@/lib/copy';
+import { browser } from 'wxt/browser';
+import { preformCopy } from '@/lib/copy';
 import { OFFSCREEN } from '@/utils/constants';
 import { type Response } from '../background';
 
@@ -6,7 +7,7 @@ browser.runtime.onMessage.addListener(
   (message, _, sendResponse: (response: Response) => void) => {
     (async () => {
       if (message.type === OFFSCREEN.MSG_TYPE) {
-        await preformModernCopy(message.data)
+        await preformCopy(message.data)
           .then(result => sendResponse({ result }))
           .catch(reason => {
             sendResponse({

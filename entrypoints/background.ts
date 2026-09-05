@@ -1,6 +1,5 @@
 import { createOffscreen } from '@/lib/offscreen';
-import { preformLegacyCopy } from '@/lib/copy';
-import { defaults, Settings } from '@/utils/defaults';
+import { preformCopy } from '@/lib/copy';
 import { BACKGROUND, OFFSCREEN } from '@/utils/constants';
 
 export type Response =
@@ -26,7 +25,7 @@ export default defineBackground(() => {
             sendResponse(response);
           } else {
             // * (Firefox/MV2)
-            await preformLegacyCopy(message.text)
+            await preformCopy(message.text)
               .then(result => sendResponse({ result }))
               .catch(reason => {
                 sendResponse({
