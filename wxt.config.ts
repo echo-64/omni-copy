@@ -2,11 +2,6 @@ import { defineConfig } from 'wxt';
 
 // See https://wxt.dev/api/config.html
 export default defineConfig({
-  webExt: {
-    firefoxProfile: 'default-esr',
-    keepProfileChanges: true,
-  },
-
   imports: false,
 
   vite: () => ({
@@ -17,7 +12,7 @@ export default defineConfig({
 
   manifest: ({ browser }) => ({
     name: 'Omni Copy',
-    version: '1.0.1',
+    version: '1.1.0',
     description:
       'Copy on select or via a button. Collect to an editable file. Control where it works — your clipboard, your rules.',
 
