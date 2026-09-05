@@ -10,8 +10,7 @@
  * @throws When both modern and legacy copy strategies fail, the promise is
  * rejected with an object containing combined error messages.
  */
-export function preformModernCopy(text: string): Promise<'copied'> {
-  return new Promise(async (res, rej) => {
+export async function preformCopy(text: string): Promise<'copied'> {
     window.focus();
 
     try {
