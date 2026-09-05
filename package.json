@@ -1,6 +1,6 @@
 {
   "name": "omni-copy",
-  "description": "The ultimate text selection tool. Auto-copy on select or via a floating button, with full control over where copying is allowed — your clipboard, your rules.",
+  "description": "The ultimate text selection tool. Copy on select or via a button. Collect to an editable file. Control where it works — your clipboard, your rules.",
   "private": true,
   "version": "1.0.1",
   "type": "module",
