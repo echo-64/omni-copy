@@ -11,17 +11,20 @@
 Omni Copy is a Firefox and Chrome extension that makes copying text effortless.  
 Just select what you need and it's instantly copied, or use a floating button if you prefer.  
 You control where it works — keep it out of password fields and text editors so you don't accidentally copy while typing.  
+Want to keep everything you copy? Turn on Collect to File and build up a single document as you go.  
 Simple, configurable, and respectful of your workflow.
 
 ## Features
 
-- **Auto-Copy on Select** — Text is copied automatically after selecting
+- **Auto-Copy on Select** — Select some text, and it's already on your clipboard.
 
-- **Floating Copy Button** — A small button appears near your cursor after selection
+- **Floating Copy Button** — Prefer a manual step? A small button pops up after you select, so you copy on your terms.
 
-- **Granular Control** — Enable or disable copying in inputs, password fields, textareas, and rich text editors individually
+- **Collect to File** — Turn on collecting, and every copy gets added to a built-in editor. Edit it, load an existing file to keep adding to, and save it all as one file whenever you're ready.
 
-- **Lightweight** — No bloat, no tracking, just copying
+- **Granular Control** — Turn copying on or off for inputs, password fields, textareas, and rich text editors — down to each one.
+
+- **Lightweight** — No bloat, no tracking. Just copying.
 
 ## Installation
 
@@ -31,23 +34,23 @@ Get the latest available version from the [Mozilla Add-ons](https://addons.mozil
 
 ### Chrome & Chromium based:
 
-Get the latest available version from the [Chrome Web Store](https://chrome.google.com/webstore) (coming soon).
+Not on the Chrome Web Store — install it from source instead (steps below).
 
 ### Install from source:
 
-1. Create `.outbut` directory with `npm run build` or `npm run build:firefox`
-2. Now in `.outbut` directory you should see `firefox-mv2` or `chrome-mv3`
+1. Create `.output` directory with `npm run build` or `npm run build:firefox`
+2. Now in `.output` directory you should see `firefox-mv2` or `chrome-mv3`
 3. Make sure the extension is not already installed
 
 **For firefox**
 
-4. Open `about:debugging` in a new tap
+4. Open `about:debugging` in a new tab
 5. Click on `This Firefox` and click `Load Temporary Add-on...`
 6. Select `manifest.json` file produced earlier in `firefox-mv2` folder (or any other file)
 
 **For chrome**
 
-4. Open `Extensions` or `chrome://extensions/` in a new tap
+4. Open `Extensions` or `chrome://extensions/` in a new tab
 5. Turn on `Developer mode` and click `Load unpacked`
 6. Select `chrome-mv3` folder produced earlier in `.output`
 
@@ -64,6 +67,16 @@ Choose how you want to copy text:
 - **Copy On Select** — Text is copied the moment you finish selecting it. Fast and effortless.
 
 - **Selection Copy Button** — A floating button appears after you select. Click it to copy. Good if you want to double-check before copying.
+
+### Collect to File
+
+Turn this on and every copy also gets added to a built-in text editor instead of just your clipboard.
+
+- **Open the editor** — Review everything collected so far, edit it directly, or clear it and start over.
+
+- **Load an existing file** — Pick a file to bring in, and new copies get added on top of it.
+
+- **Export** — Save everything as a single file whenever you're ready, named however you like.
 
 ### Where Copying is Allowed
 
