@@ -2,9 +2,7 @@ import { createOffscreen } from '@/lib/offscreen';
 import { preformCopy } from '@/lib/copy';
 import { BACKGROUND, OFFSCREEN } from '@/utils/constants';
 
-export type Response =
-  | { result: 'copied' }
-  | { result: 'error'; message: string };
+export type Response = { result: 'copied' } | { result: 'error'; message: string };
 
 export default defineBackground(() => {
   browser.runtime.onMessage.addListener(
