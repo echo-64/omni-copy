@@ -1,5 +1,6 @@
 import '../../sass/popup.sass';
 
+import { browser } from 'wxt/browser';
 import { ui, renderUi } from '@/lib/render';
 import { getSettings, updateSettings } from '@/lib/settings';
 import { UI_SELECTORS } from '@/utils/constants';
@@ -7,6 +8,8 @@ import { UI_SELECTORS } from '@/utils/constants';
 const {
   copyOnSelect,
   floatingButton,
+  collect2FileBtn,
+  openEditorLink,
   preferenceInputs,
   preferencePassword,
   preferenceTextareas,
@@ -17,7 +20,7 @@ await renderUi(await getSettings());
 
 copyOnSelect.addEventListener('change', async function () {
   if (!this.checked && !floatingButton.checked) {
-    await updateSettings({ mode: 'disabled' });
+    await updateSettings({ mode: 'disabled', collectToFile: false });
   } else if (this.checked && (!floatingButton.checked || floatingButton.checked)) {
     await updateSettings({ mode: 'onSelect' });
   }
@@ -25,10 +28,20 @@ copyOnSelect.addEventListener('change', async function () {
 
 floatingButton.addEventListener('change', async function () {
   if (!this.checked && !copyOnSelect.checked) {
-    await updateSettings({ mode: 'disabled' });
+    await updateSettings({ mode: 'disabled', collectToFile: false });
   } else if (this.checked && (!copyOnSelect.checked || copyOnSelect.checked)) {
     await updateSettings({ mode: 'floatingButton' });
   }
+});
+
+collect2FileBtn.addEventListener('change', async function () {
+  await updateSettings({ collectToFile: this.checked });
+});
+
+openEditorLink.addEventListener('click', async function () {
+  await browser.tabs.create({
+    url: browser.runtime.getURL('/editor.html'),
+  });
 });
 
 preferenceInputs.addEventListener('change', async function () {

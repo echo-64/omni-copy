@@ -5,6 +5,9 @@ interface Ui {
   clipboard: HTMLDivElement;
   copyOnSelect: HTMLInputElement;
   floatingButton: HTMLInputElement;
+  collect2FileBtn: HTMLInputElement;
+  collectedCounter: HTMLSpanElement;
+  openEditorLink: HTMLAnchorElement;
   preferenceInputs: HTMLInputElement;
   preferencePassword: HTMLInputElement;
   preferenceTextareas: HTMLInputElement;
@@ -24,6 +27,18 @@ export const ui: Ui = {
   floatingButton: document.getElementById(
     UI_SELECTORS.FLOATING_BTN_ID,
   ) as HTMLInputElement,
+
+  collect2FileBtn: document.getElementById(
+    UI_SELECTORS.COLLECT_TO_FILE_ID,
+  ) as HTMLInputElement,
+
+  collectedCounter: document.getElementById(
+    UI_SELECTORS.COLLECTED_COUNTER_ID,
+  ) as HTMLSpanElement,
+
+  openEditorLink: document.getElementById(
+    UI_SELECTORS.OPEN_EDITOR_BTN_ID,
+  ) as HTMLAnchorElement,
 
   preferenceInputs: document.getElementById(
     UI_SELECTORS.PREFERENCE_INPUTS_ID,
@@ -47,11 +62,13 @@ export const ui: Ui = {
  *
  * @param settings - Partial settings object to apply to the UI.
  */
-export function renderUi(settings: Partial<Settings>): void {
+export async function renderUi(settings: Partial<Settings>): Promise<void> {
   const {
     clipboard,
     copyOnSelect,
     floatingButton,
+    collect2FileBtn,
+    collectedCounter,
     preferenceInputs,
     preferencePassword,
     preferenceTextareas,
@@ -75,6 +92,9 @@ export function renderUi(settings: Partial<Settings>): void {
     floatingButton.checked = false;
     clipboard.classList.add(UI_SELECTORS.CLIPBOARD_DISABLED_CLASS);
   }
+
+  typeof settings.collectToFile === 'boolean' &&
+    (collect2FileBtn.checked = settings.collectToFile);
 
   collectedCounter.innerHTML = `${(await getSetting('collectedText')).text.length}`;
 
