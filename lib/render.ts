@@ -1,4 +1,5 @@
 import { UI_SELECTORS } from '@/utils/constants';
+import { Settings } from '@/utils/defaults';
 import { getSetting } from './settings';
 
 interface Ui {
@@ -96,7 +97,7 @@ export async function renderUi(settings: Partial<Settings>): Promise<void> {
   typeof settings.collectToFile === 'boolean' &&
     (collect2FileBtn.checked = settings.collectToFile);
 
-  collectedCounter.innerHTML = `${(await getSetting('collectedText')).text.length}`;
+  collectedCounter.textContent = `${(await getSetting('collectedText')).text.length}`;
 
   if (typeof settings.allowInInputs === 'boolean') {
     if (settings.allowInInputs) {

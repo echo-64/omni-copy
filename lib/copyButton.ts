@@ -1,3 +1,4 @@
+import { browser } from 'wxt/browser';
 import { getSelected, clean } from './selection';
 import { type Response } from '../entrypoints/background';
 import { BACKGROUND } from '@/utils/constants';
@@ -45,19 +46,29 @@ export function renderButton(ev: MouseEvent): void {
  */
 function createButton(state: 'copy' | 'copied' | 'error'): HTMLButtonElement {
   const button = document.createElement('button');
+  const html2dom: (html: string) => NodeListOf<ChildNode> = (html: string) =>
+    new DOMParser().parseFromString(html, 'text/html').body.childNodes;
 
   button.classList.add('omni-btn');
 
   if (state === 'copy') {
+    const copySvg: string =
+      '<svg width=13 height=13 viewBox="0 0 16 16"fill=none xmlns=http://www.w3.org/2000/svg><rect x=5 y=1 width=9 height=11 rx=1.5 stroke=#8ed0d4 stroke-width=1.5 /><rect x=2 y=4 width=9 height=11 rx=1.5 fill=#25507a stroke=#8ed0d4 stroke-width=1.5 /></svg>copy';
+
     button.title = 'copy selected';
-    button.innerHTML = `<svg width=13 height=13 viewBox="0 0 16 16"fill=none xmlns=http://www.w3.org/2000/svg><rect x=5 y=1 width=9 height=11 rx=1.5 stroke=#8ed0d4 stroke-width=1.5 /><rect x=2 y=4 width=9 height=11 rx=1.5 fill=#25507a stroke=#8ed0d4 stroke-width=1.5 /></svg>copy`;
+    button.append(...html2dom(copySvg));
   } else if (state === 'copied') {
+    const copiedSvg: string =
+      '<svg width=13 height=13 viewBox="0 0 16 16"fill=none xmlns=http://www.w3.org/2000/svg><polyline points="2,8 6,12 14,4"stroke=#5dcaa5 stroke-width=2 stroke-linecap=round stroke-linejoin=round /></svg>copied';
+
     button.classList.add('omni-btn--copied');
-    button.innerHTML = `<svg width=13 height=13 viewBox="0 0 16 16"fill=none xmlns=http://www.w3.org/2000/svg><polyline points="2,8 6,12 14,4"stroke=#5dcaa5 stroke-width=2 stroke-linecap=round stroke-linejoin=round /></svg>copied`;
+    button.append(...html2dom(copiedSvg));
   } else if (state === 'error') {
-    button.classList.add('omni-btn--error');
-    button.innerHTML =
+    const errorSvg: string =
       '<svg width=13 height=13 viewBox="0 0 16 16"fill=none><line x1=3 y1=3 x2=13 y2=13 stroke=#F09595 stroke-width=2 stroke-linecap=round /><line x1=13 y1=3 x2=3 y2=13 stroke=#F09595 stroke-width=2 stroke-linecap=round /></svg>error';
+
+    button.classList.add('omni-btn--error');
+    button.append(...html2dom(errorSvg));
   }
 
   return button;
