@@ -12,7 +12,7 @@ export default defineConfig({
     name: 'Omni Copy',
     version: '1.0.1',
     description:
-      'The ultimate selection tool. Auto-copy on select or via a floating button, with full control over where — your clipboard, your rules',
+      'Copy on select or via a button. Collect to an editable file. Control where it works — your clipboard, your rules.',
 
     ...(browser === 'firefox' && {
       browser_specific_settings: {
