@@ -22,7 +22,6 @@ export default defineConfig({
       'The ultimate selection tool. Auto-copy on select or via a floating button, with full control over where — your clipboard, your rules',
 
     ...(browser === 'firefox' && {
-      permissions: ['storage', 'clipboardWrite'],
       browser_specific_settings: {
         gecko: {
           id: 'omni-copy@local.dev',
@@ -33,9 +32,12 @@ export default defineConfig({
       },
     }),
 
-    ...(browser === 'chrome' && {
-      permissions: ['storage', 'clipboardWrite', 'offscreen'],
-    }),
+    permissions: [
+      'storage',
+      'clipboardWrite',
+      ...(browser === 'chrome' ? ['offscreen'] : []),
+      'downloads',
+    ],
 
     host_permissions: ['*://*/*'],
 
