@@ -1,7 +1,7 @@
 import '../../sass/popup.sass';
 
 import { ui, renderUi } from '@/lib/render';
-import { updateSettings } from '@/lib/settings';
+import { getSettings, updateSettings } from '@/lib/settings';
 import { UI_SELECTORS } from '@/utils/constants';
 
 const {
@@ -13,7 +13,7 @@ const {
   preferenceContenteditable,
 } = ui;
 
-renderUi(await browser.storage.local.get());
+await renderUi(await getSettings());
 
 copyOnSelect.addEventListener('change', async function () {
   if (!this.checked && !floatingButton.checked) {
