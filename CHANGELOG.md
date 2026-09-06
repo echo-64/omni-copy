@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2026-09-07
+
+### Fixed
+
+- **UI** — settings changed in the popup didn't actually apply until you reloaded the tab. Annoying. Now the tab picks up changes automatically, no reload needed.
+
 ## [1.1.0] - 2026-09-05
 
 ### Added
