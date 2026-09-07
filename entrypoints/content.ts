@@ -23,33 +23,17 @@ export default defineContentScript({
     });
 
     document.addEventListener('selectionchange', () => {
-      if (settings.mode !== 'disabled') {
-        onSelect();
-      }
+      if (settings.mode === 'disabled') return;
+      onSelect();
     });
 
     document.addEventListener('mouseup', async (ev: MouseEvent) => {
-      if (settings.mode !== 'disabled') {
-        await onSelectEnd(settings, ev);
-      }
+      if (settings.mode === 'disabled') return;
+      await onSelectEnd(settings, ev);
     });
 
     document.addEventListener('keydown', (ev: KeyboardEvent) => {
-      if (settings.mode !== 'disabled') {
-        const key: string = ev.key.toLowerCase();
-        const isArrowKey: boolean =
-          key == 'arrowup' ||
-          key == 'arrowdown' ||
-          key == 'arrowright' ||
-          key == 'arrowleft';
-
-        if (ev.shiftKey) {
-          if (!isArrowKey && key != 'shift' && key != 'control') {
-            clean();
-          }
-        } else if (key != 'control') {
-          clean();
-        }
+      if (settings.mode !== 'floatingButton') return;
       }
     });
   },
