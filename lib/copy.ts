@@ -1,6 +1,3 @@
-import { collectText } from './editor';
-import { getSetting } from './settings';
-
 /**
  * Writes text to the clipboard using the modern Clipboard API.
  *
@@ -23,10 +20,6 @@ export async function preformCopy(text: string): Promise<'copied'> {
     } catch (legacyCopyError: any) {
       throw new Error(`${modernCopyError.message}\n${legacyCopyError.message}`);
     }
-  }
-
-  if ((await getSetting('collectToFile')) === true) {
-    await collectText(text);
   }
 
   return 'copied';

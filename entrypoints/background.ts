@@ -3,7 +3,8 @@ import { browser } from 'wxt/browser';
 import { createOffscreen } from '@/lib/offscreen';
 import { preformCopy } from '@/lib/copy';
 import { BACKGROUND, OFFSCREEN } from '@/utils/constants';
-import { getSettings } from '@/lib/settings';
+import { getSetting, getSettings } from '@/lib/settings';
+import { collectText } from '@/lib/editor';
 
 export type Response = { result: 'copied' } | { result: 'error'; message: string };
 
@@ -13,7 +14,6 @@ export default defineBackground(() => {
       (async () => {
         if (message.type === BACKGROUND.MSG_TYPE) {
           if (browser.offscreen) {
-            // * (Chrome/MV3)
             if (!(await browser.offscreen.hasDocument())) {
               await createOffscreen();
             }
@@ -25,7 +25,6 @@ export default defineBackground(() => {
 
             sendResponse(response);
           } else {
-            // * (Firefox/MV2)
             await preformCopy(message.text)
               .then(result => sendResponse({ result }))
               .catch(reason => {
@@ -34,6 +33,10 @@ export default defineBackground(() => {
                   message: reason.message || 'Unknown Error!',
                 });
               });
+          }
+
+          if ((await getSetting('collectToFile')) === true) {
+            await collectText(message.text);
           }
         }
       })();
