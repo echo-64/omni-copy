@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2026-09-07
+
+### Fixed
+
+- **Input** — cleanup was firing on every keystroke and killing focus/selection mid-input, so typing in input fields just didn't work. Fixed and cleanup no longer messes with active input.
+
 ## [1.1.1] - 2026-09-07
 
 ### Fixed
