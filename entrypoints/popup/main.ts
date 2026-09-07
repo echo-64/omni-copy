@@ -20,22 +20,22 @@ await renderUi(await getSettings());
 
 copyOnSelect.addEventListener('change', async function () {
   if (!this.checked && !floatingButton.checked) {
-    await updateSettings({ mode: 'disabled', collectToFile: false });
+    updateSettings({ mode: 'disabled', collectToFile: false }).then(renderUi);
   } else if (this.checked && (!floatingButton.checked || floatingButton.checked)) {
-    await updateSettings({ mode: 'onSelect' });
+    updateSettings({ mode: 'onSelect' }).then(renderUi);
   }
 });
 
 floatingButton.addEventListener('change', async function () {
   if (!this.checked && !copyOnSelect.checked) {
-    await updateSettings({ mode: 'disabled', collectToFile: false });
+    updateSettings({ mode: 'disabled', collectToFile: false }).then(renderUi);
   } else if (this.checked && (!copyOnSelect.checked || copyOnSelect.checked)) {
-    await updateSettings({ mode: 'floatingButton' });
+    updateSettings({ mode: 'floatingButton' }).then(renderUi);
   }
 });
 
-collect2FileBtn.addEventListener('change', async function () {
-  await updateSettings({ collectToFile: this.checked });
+collect2FileBtn.addEventListener('change', function () {
+  updateSettings({ collectToFile: this.checked }).then(renderUi);
 });
 
 openEditorLink.addEventListener('click', async function () {
@@ -50,30 +50,24 @@ preferenceInputs.addEventListener('change', async function () {
       .querySelector('html')
       ?.classList.add(UI_SELECTORS.EXPAND_SUB_PREFERENCE_CLASS);
 
-    await updateSettings({
-      allowInInputs: true,
-      allowInPasswords: false,
-    });
+    updateSettings({ allowInInputs: true, allowInPasswords: false }).then(renderUi);
   } else {
     document
       .querySelector('html')
       ?.classList.remove(UI_SELECTORS.EXPAND_SUB_PREFERENCE_CLASS);
 
-    await updateSettings({
-      allowInInputs: false,
-      allowInPasswords: false,
-    });
+    updateSettings({ allowInInputs: false, allowInPasswords: false }).then(renderUi);
   }
 });
 
-preferencePassword.addEventListener('change', async function () {
-  await updateSettings({ allowInPasswords: this.checked });
+preferencePassword.addEventListener('change', function () {
+  updateSettings({ allowInPasswords: this.checked }).then(renderUi);
 });
 
-preferenceTextareas.addEventListener('change', async function () {
-  await updateSettings({ allowInTextareas: this.checked });
+preferenceTextareas.addEventListener('change', function () {
+  updateSettings({ allowInTextareas: this.checked }).then(renderUi);
 });
 
-preferenceContenteditable.addEventListener('change', async function () {
-  await updateSettings({ allowInContenteditable: this.checked });
+preferenceContenteditable.addEventListener('change', function () {
+  updateSettings({ allowInContenteditable: this.checked }).then(renderUi);
 });
