@@ -1,8 +1,9 @@
 import { defineContentScript } from 'wxt/utils/define-content-script';
 import { Settings } from '@/utils/defaults';
-import { onSelect, onSelectEnd, clean } from '@/lib/selection';
+import { onSelect, onSelectEnd } from '@/lib/selection';
 import { getSettings } from '@/lib/settings';
 import { browser } from 'wxt/browser';
+import { removeButtonHost } from '@/lib/copyButton';
 
 export default defineContentScript({
   matches: ['*://*/*'],
@@ -34,6 +35,15 @@ export default defineContentScript({
 
     document.addEventListener('keydown', (ev: KeyboardEvent) => {
       if (settings.mode !== 'floatingButton') return;
+
+      const isArrowKey: boolean =
+        ev.key == 'ArrowUp' ||
+        ev.key == 'ArrowDown' ||
+        ev.key == 'ArrowRight' ||
+        ev.key == 'ArrowLeft';
+
+      if (!ev.shiftKey || (!isArrowKey && ev.key !== 'Shift' && ev.key !== 'Control')) {
+        if (ev.key !== 'Control') removeButtonHost();
       }
     });
   },
