@@ -63,7 +63,7 @@ export const ui: Ui = {
  *
  * @param settings - Partial settings object to apply to the UI.
  */
-export async function renderUi(settings: Partial<Settings>): Promise<void> {
+export function renderUi(settings: Partial<Settings>): void {
   const {
     clipboard,
     copyOnSelect,
@@ -97,7 +97,9 @@ export async function renderUi(settings: Partial<Settings>): Promise<void> {
   typeof settings.collectToFile === 'boolean' &&
     (collect2FileBtn.checked = settings.collectToFile);
 
-  collectedCounter.textContent = `${(await getSetting('collectedText')).text.length}`;
+  getSetting('collectedText').then(collected => {
+    collectedCounter.textContent = collected.text.length.toString();
+  });
 
   if (typeof settings.allowInInputs === 'boolean') {
     if (settings.allowInInputs) {

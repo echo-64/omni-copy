@@ -16,9 +16,9 @@ const {
   preferenceContenteditable,
 } = ui;
 
-await renderUi(await getSettings());
+renderUi(await getSettings());
 
-copyOnSelect.addEventListener('change', async function () {
+copyOnSelect.addEventListener('change', function () {
   if (!this.checked && !floatingButton.checked) {
     updateSettings({ mode: 'disabled', collectToFile: false }).then(renderUi);
   } else if (this.checked && (!floatingButton.checked || floatingButton.checked)) {
@@ -26,7 +26,7 @@ copyOnSelect.addEventListener('change', async function () {
   }
 });
 
-floatingButton.addEventListener('change', async function () {
+floatingButton.addEventListener('change', function () {
   if (!this.checked && !copyOnSelect.checked) {
     updateSettings({ mode: 'disabled', collectToFile: false }).then(renderUi);
   } else if (this.checked && (!copyOnSelect.checked || copyOnSelect.checked)) {
@@ -44,7 +44,7 @@ openEditorLink.addEventListener('click', async function () {
   });
 });
 
-preferenceInputs.addEventListener('change', async function () {
+preferenceInputs.addEventListener('change', function () {
   if (this.checked) {
     document
       .querySelector('html')
