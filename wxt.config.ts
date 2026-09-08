@@ -12,7 +12,7 @@ export default defineConfig({
 
   manifest: ({ browser }) => ({
     name: 'Omni Copy',
-    version: '1.1.2',
+    version: '1.1.3',
     description:
       'Copy on select or via a button. Collect to an editable file. Control where it works — your clipboard, your rules.',
 
