@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2026-09-08
+
+### Fixed
+
+This release restores compatibility with chromium-based browsers (MV3).
+
+- Fixed the extension failing to run in chromium-based browsers because DOM code was bundled into the background script.
+
+- Fixed collected text not being sent to the built-in editor in chromium-based browsers.
+
 ## [1.1.2] - 2026-09-07
 
 ### Fixed
