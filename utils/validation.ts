@@ -1,4 +1,4 @@
-import { Settings } from "./defaults";
+import type { Settings } from "./defaults";
 import { isInputElement, isOfType } from "./textField";
 
 /**

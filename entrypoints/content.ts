@@ -1,5 +1,5 @@
 import { defineContentScript } from 'wxt/utils/define-content-script';
-import { Settings } from '@/utils/defaults';
+import type { Settings } from '@/utils/defaults';
 import { onSelect, onSelectEnd } from '@/lib/selection';
 import { getSettings } from '@/lib/settings';
 import { browser } from 'wxt/browser';
@@ -17,8 +17,8 @@ export default defineContentScript({
       for (const key in changes) {
         if (key === 'collectedText') continue;
 
-        if (changes[key].newValue !== changes[key].oldValue) {
-          settings = { ...settings, [key]: changes[key].newValue };
+        if (changes[key]?.newValue !== changes[key]?.oldValue) {
+          settings = { ...settings, [key]: changes[key]?.newValue };
         }
       }
     });

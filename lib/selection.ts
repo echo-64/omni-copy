@@ -1,5 +1,5 @@
 import { browser } from 'wxt/browser';
-import { Settings } from '@/utils/defaults';
+import type { Settings } from '@/utils/defaults';
 import { BACKGROUND } from '@/utils/constants';
 import { isTextField } from '@/utils/textField';
 import { isValidSelection } from '@/utils/validation';

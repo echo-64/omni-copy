@@ -1,4 +1,4 @@
-import { Settings } from './defaults';
+import type { Settings } from './defaults';
 
 /**
  * Merges a partial settings object into the current settings.

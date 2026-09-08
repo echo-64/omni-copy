@@ -1,5 +1,5 @@
 import { browser } from 'wxt/browser';
-import { defaults, Settings } from '@/utils/defaults';
+import { defaults, type Settings } from '@/utils/defaults';
 import { patchSettings } from '@/utils/patchSettings';
 
 /**

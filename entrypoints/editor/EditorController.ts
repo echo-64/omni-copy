@@ -1,7 +1,7 @@
-import { Browser, browser } from 'wxt/browser';
+import { browser, type Browser } from 'wxt/browser';
 import { EditorView } from '@codemirror/view';
 import { Transaction } from '@codemirror/state';
-import { CollectedText } from '@/utils/defaults';
+import type { CollectedText } from '@/utils/defaults';
 import { getSetting } from '@/lib/settings';
 
 /**

@@ -1,5 +1,5 @@
 import { UI_SELECTORS } from '@/utils/constants';
-import { Settings } from '@/utils/defaults';
+import type { Settings } from '@/utils/defaults';
 import { getSetting } from './settings';
 
 interface Ui {

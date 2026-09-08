@@ -18,9 +18,10 @@
   },
   "devDependencies": {
     "@types/codemirror": "^5.60.18",
-    "sass-embedded": "^1.99.0",
-    "typescript": "^5.9.3",
-    "wxt": "^0.20.25"
+    "sass-embedded": "^1.104.0",
+    "typescript": "^7.0.2",
+    "web-ext": "^10.6.0",
+    "wxt": "^0.21.4"
   },
   "dependencies": {
     "@codemirror/theme-one-dark": "^6.1.3",
