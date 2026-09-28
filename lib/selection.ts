@@ -85,22 +85,9 @@ export function resetSelected(): void {
 }
 
 /**
- * Removes all ranges from the current selection and resets input field selections.
- */
-export function resetSelection(): void {
-  selection && selection.removeAllRanges();
-
-  if (container && isTextField(container)) {
-    const field = container as HTMLInputElement;
-    field.selectionStart = field.selectionEnd;
-  }
-}
-
-/**
  * Reset selection state and remove the floating button from the page.
  */
 export function clean() {
   resetSelected();
-  resetSelection();
   removeButtonHost();
 }
