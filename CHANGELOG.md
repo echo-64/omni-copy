@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.4] - 2026-09-28
+
+### Fixed
+
+- Removing the aggressive selection reset prevents interference with native browser context menus, such as Firefox's 'Translate Selection' feature.
+
 ## [1.1.3] - 2026-09-08
 
 ### Fixed
